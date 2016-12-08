@@ -130,14 +130,15 @@ The most vexing problem right now is the requirement for the executable to be co
 We're not trying to parse the ELF data at runtime, since the intended usage is to distribute only a wasm file, but we need access to dynamic relocations, dynamic symbols, and some additional data for the JavaScript dynamic loader to access at runtime. So what we're doing right now is to read that information from the ELF file, run it through a Perl script, and produce a wasm custom section containing that information in JavaScript notation (right now it's run through `eval`, but should switch to using `JSON` soon).
 
 That section is called `dyninfo`, and constructs a single JavaScript object with the following members:
-* `ref`: dynamic references to data/data relocations
-* `refun`: dynamic references to code/code relocations
-* `def`: dynamic symbols defining data
-* `defun`: dynamic symbols defining code
-* `fixup`: references to local data
-* `fixupfun`: references to local code
-* `plt_bias`, `plt_end`: limits of the PLT
-* `data`, `data_end`: size and offset of the data section
+
+- `ref`: dynamic references to data/data relocations
+- `refun`: dynamic references to code/code relocations
+- `def`: dynamic symbols defining data
+- `defun`: dynamic symbols defining code
+- `fixup`: references to local data
+- `fixupfun`: references to local code
+- `plt_bias`, `plt_end`: limits of the PLT
+- `data`, `data_end`: size and offset of the data section
 
 ## Function pointers in data sections
 
