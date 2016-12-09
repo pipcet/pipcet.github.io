@@ -5,6 +5,7 @@ date:   2016-12-09 11:00:00 +0000
 categories: wasm
 ---
 I just compiled a dynamically-linked binary that looks like it should:
+
 ```
 #include <stdio.h>
 #include <string.h>
